@@ -1,0 +1,9 @@
+<h1>image Page</h1>
+<hr>
+<ul class="list-group well">
+  <% @images.each do |image| %>
+    <li class="list-group-item"><strong><%= image.email %></strong> <%= link_to "image Page", image_path(image), :class => "btn btn-info btn-sm pull-right" %></li>
+  <% end %>
+</ul>
+<hr>
+<%= link_to "Add a image", new_image_path, :class => "btn-lg"%>
