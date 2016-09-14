@@ -1,5 +1,5 @@
 <h1><%= @image.email %> Page</h1>
-
+<%= image_tag(@image.image.url) %>
 <% if 1 == 0 %>
 <ul class="list-group well">
   <% @image.secondmodels.each do |secondmodel| %>
