@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
   def index
     @images = Image.all
   end
@@ -13,8 +13,8 @@ class ImagesController < ApplicationController
     @image = Image.new
   end
   def create
-    @image = Image.create(image_params)
-    if @image
+    @image = Image.new(image_params)
+    if @image.save
       flash[:notice] = "Image saved successfully"
       redirect_to images_path
     else
