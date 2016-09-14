@@ -1,0 +1,19 @@
+<hr>
+<%= current_user.email %>
+<h4>Your Images</h4>
+<% current_user.images.each do |image| %>
+<br>
+<strong><%= image.description %></strong>
+
+<%= image_tag(image.image.url) %>
+<hr>
+<% end %>
+<h4>Your Favorites</h4>
+<% current_user.favorites_images.each do |image_id| %>
+<% image = Image.find(image_id) %>
+<br>
+<strong><%= image.description %></strong>
+
+<%= image_tag(image.image.url) %>
+<hr>
+<% end %>

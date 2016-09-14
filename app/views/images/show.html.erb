@@ -1,5 +1,6 @@
-<h1><%= @image.email %> Page</h1>
+<h1><%= @image.description %> Page</h1>
 <%= image_tag(@image.image.url) %>
+
 <% if 1 == 0 %>
 <ul class="list-group well">
   <% @image.secondmodels.each do |secondmodel| %>
@@ -8,6 +9,7 @@
 </ul>
 <% end %>
 
+<% if current_user == @image.user %>
 <div class="btn-group">
   <%= link_to "Edit", edit_image_path(@image), :class => "btn btn-primary" %>
   <%= link_to "Delete", image_path(@image), :class => "btn btn-primary", :data => {:confirm => "You Sure?", :method => 'delete'} %>
@@ -15,6 +17,7 @@
   <%= link_to "Add a secondmodel", new_image_secondmodel_path(@image), :class => "btn btn-primary" %>
   <% end %>
 </div>
+<% end %>
 
 
 <hr>

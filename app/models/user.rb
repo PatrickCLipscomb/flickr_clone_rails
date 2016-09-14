@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   after_create :send_welcome_message
-
+  has_many :images
   def send_welcome_message
     UserMailer.signup_confirmation(self).deliver
   end
