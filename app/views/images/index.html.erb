@@ -1,8 +1,25 @@
 <h1>image Page</h1>
 <hr>
 <ul class="list-group well">
-  <% @images.each do |image| %>
-    <li class="list-group-item"><strong><%= image.description %></strong> <%= link_to "image Page", image_path(image), :class => "btn btn-info btn-sm pull-right" %><% if current_user == image.user %>(editable by you)<%end%></li>
+  <% @images.order(:created_at).each do |image| %>
+  <br>
+    <li class="list-group-item">
+      <strong><%= image.description %></strong>
+      <% image.user_tags.each do |user_id| %>
+      <% user = User.find(user_id) %>
+      | <%= user.email.capitalize %>
+      <%end%>
+      <%= link_to "image Page", image_path(image), :class => "btn btn-info btn-sm pull-right" %>
+      <% if current_user == image.user %>
+        (editable by you)
+      <%end%>
+      <% if current_user %>
+        <%= link_to "Favorite", favorite_image_path(image), :class => "btn btn-success pull-right", :method => "post" %>
+        <% if current_user.favorite_images.include?(image.id) %>
+          (Already Favorited)
+        <% end %>
+      <% end %>
+    </li>
   <% end %>
 </ul>
 <hr>

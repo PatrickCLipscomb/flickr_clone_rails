@@ -19,7 +19,7 @@ describe "the add an image path" do
     user = FactoryGirl.create(:user)
     visit "/"
     click_link 'Login'
-    fill_in 'Email', :with => 'user@email.com'
+    fill_in 'Description', :with => 'user@email.com'
     fill_in 'Password', :with => '123456'
     click_on 'Log in'
     click_link 'Add a image'

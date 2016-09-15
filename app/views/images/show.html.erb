@@ -1,5 +1,25 @@
 <h1><%= @image.description %> Page</h1>
-<%= image_tag(@image.image.url) %>
+<div class="row">
+  <div class="col-sm-6">
+    <%= image_tag(@image.image.url(:medium)) %>
+    <% if @image.user_tags.length > 0 %>
+      <h5>Users tagged on this image</h5>
+      <% @image.user_tags.each do |user_id| %>
+        <% user = User.find(user_id) %>
+        <p><%= user.email %> is tagged</p>
+      <% end %>
+    <% end %>
+
+  </div>
+  <div class="col-sm-6">
+    <h5>Tag a fellow User on this Image</h5>
+      <% @users.each do |user| %>
+        <%= link_to "Tag " + user.email.capitalize, tag_user_image_path(user, @image), :class => "btn btn-success", :method => "post" %>
+      <% end %>
+    </select>
+  </div>
+</div>
+
 
 <% if 1 == 0 %>
 <ul class="list-group well">
